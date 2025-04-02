@@ -6,6 +6,7 @@ const URL_Shortener = () => {
     const [url, setURL] = useState("");
 
     const handleClick = () => {
+        
         console.log(url);
     }
 
@@ -17,6 +18,7 @@ const URL_Shortener = () => {
                     <input className="URL_Shortener_input" placeholder="Enter link here" type="text" onChange={(e)=>{setURL(e.target.value)}}></input>
                     <button className="URL_Shortener_button" onClick={handleClick}>Shorten URL</button>
                 </div>
+                <p className="someTextInURL_Shortener">URL Shortener is a free tool to shorten URLs and generate short links <br/>URL shortener allows to create a shortened link making it easy to share</p>
             </div>
         </>
     );
