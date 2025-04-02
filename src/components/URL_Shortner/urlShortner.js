@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './urlShortener.css';
+import { db } from "../firebaseConfig/firebaseConfig";
 
 const URL_Shortener = () => {
 
@@ -28,6 +29,10 @@ const URL_Shortener = () => {
             let num = hashArray.slice(0, 8).reduce((acc, byte) => (acc * 256) + byte, 1); // Start from 1 to avoid 0
             
             return encodeBase62(num);
+        }
+
+        const putDataInFirebaseTest = () => {
+            
         }
 
         hashAndEncodeBase62(url).then(console.log);
