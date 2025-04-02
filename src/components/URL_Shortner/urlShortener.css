@@ -19,3 +19,42 @@
     color: #555555;
     font-weight: bold;
 }
+
+.URL_Shortener_text_box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0px;
+}
+
+.URL_Shortener_input{
+    outline: none;
+    font-size: 18px;
+    padding: 15px;
+    height: 100%;
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin: 0; /* Removed top and bottom margin */
+    border: 1px solid #ccc; /* Ensures the top border is visible */
+    border-right: none; /* Removes the border between input and button */
+}
+
+.URL_Shortener_button{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 15px;
+    background-color: #2C87C5;
+    color: white;
+    outline: none;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 18px;
+}
+.URL_Shortener_button:hover{
+    cursor: pointer;
+}
