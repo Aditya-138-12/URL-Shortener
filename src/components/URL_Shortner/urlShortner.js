@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './urlShortener.css';
 import { db } from "../firebaseConfig/firebaseConfig";
+import {ref, set, push} from 'firebase/database';
 
 const URL_Shortener = () => {
 
@@ -31,11 +32,16 @@ const URL_Shortener = () => {
             return encodeBase62(num);
         }
 
-        const putDataInFirebaseTest = () => {
-            
-        }
+        const putDataInFirebaseTest = async (data) => {
+            const dbRef = ref(db, "shortURLs/");
+            const newRef = push(dbRef);
+            await set(newRef, data)
+                .then(()=>{console.log("URL Added Sucessfully.")})
+                .catch((error)=>console.log("Error Adding URL: ", error))
+        };
 
-        hashAndEncodeBase62(url).then(console.log);
+        let shortURL = await hashAndEncodeBase62(url);
+        putDataInFirebaseTest({name: shortURL, link: url});
         
     }
 
