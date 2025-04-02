@@ -5,9 +5,33 @@ const URL_Shortener = () => {
 
     const [url, setURL] = useState("");
 
-    const handleClick = () => {
+    const handleClick = async () => {
+
+        const BASE62_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        function encodeBase62(num) {
+            let encoded = "";
+            while (num > 0) {
+                encoded = BASE62_CHARS[num % 62] + encoded;
+                num = Math.floor(num / 62);
+            }
+            return encoded || "0"; // Default to '0' for num=0
+        }
+
+        async function hashAndEncodeBase62(text) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(text + Date.now() + Math.random()); // This mostly solves the problem, but if 2 people still press the button at the same time, for which we can do Math.random()
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
         
-        console.log(url);
+            // Convert hash to a large positive number (use more bytes)
+            let num = hashArray.slice(0, 8).reduce((acc, byte) => (acc * 256) + byte, 1); // Start from 1 to avoid 0
+            
+            return encodeBase62(num);
+        }
+
+        hashAndEncodeBase62(url).then(console.log);
+        
     }
 
     return (
