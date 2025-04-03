@@ -41,7 +41,7 @@ const URL_Shortener = () => {
         };
 
         let shortURL = await hashAndEncodeBase62(url);
-        putDataInFirebaseTest({name: shortURL, link: url});
+        putDataInFirebaseTest({name: shortURL, link: url, hits: 0});
         
     }
 
