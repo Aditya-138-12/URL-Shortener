@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import './urlShortener.css';
 import { db } from "../firebaseConfig/firebaseConfig";
 import {ref, set, push} from 'firebase/database';
+import { Navigate, useNavigate } from "react-router-dom";
 
 const URL_Shortener = () => {
 
     const [url, setURL] = useState("");
     const [shURL, setshURL] = useState('');
     const [linkTHere, setlinkTHere] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleClick = async () => {
 
@@ -49,6 +52,10 @@ const URL_Shortener = () => {
         
     }
 
+    const handleClickShortenURl = () => {
+        window.location.href = "https://url-shortener-eosin-nu.vercel.app/" + shURL;
+    }
+
     return (
         <>
             <div className="URL_Shortener_main_div">
@@ -59,6 +66,7 @@ const URL_Shortener = () => {
                 </div>
                 {linkTHere && <div className="shorten_link_div">
                     <a href={"https://url-shortener-eosin-nu.vercel.app/"+shURL} target="_blank">{"https://url-shortener-eosin-nu.vercel.app/"+shURL}</a>
+                    <div className="shorten_link_button" onClick={handleClickShortenURl}>Click here</div>
                 </div>}
                 <p className="someTextInURL_Shortener">URL Shortener is a free tool to shorten URLs and generate short links <br/>URL shortener allows to create a shortened link making it easy to share</p>
             </div>
