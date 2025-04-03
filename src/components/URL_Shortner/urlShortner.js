@@ -57,7 +57,9 @@ const URL_Shortener = () => {
                     <input className="URL_Shortener_input" placeholder="Enter link here" type="text" onChange={(e)=>{setURL(e.target.value)}}></input>
                     <button className="URL_Shortener_button" onClick={handleClick}>Shorten URL</button>
                 </div>
-                {linkTHere && <a className="ShortenedURL" href={"https://url-shortener-eosin-nu.vercel.app/"+shURL}>Click here</a>}
+                {linkTHere && <div className="shorten_link_div">
+                    <a href={"https://url-shortener-eosin-nu.vercel.app/"+shURL} target="_blank">{"https://url-shortener-eosin-nu.vercel.app/"+shURL}</a>
+                </div>}
                 <p className="someTextInURL_Shortener">URL Shortener is a free tool to shorten URLs and generate short links <br/>URL shortener allows to create a shortened link making it easy to share</p>
             </div>
         </>

@@ -64,3 +64,8 @@
 .someTextInURL_Shortener{
     line-height: 25px;
 }
+
+.shorten_link_div{
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
