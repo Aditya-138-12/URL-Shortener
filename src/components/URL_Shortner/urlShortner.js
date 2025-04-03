@@ -6,6 +6,8 @@ import {ref, set, push} from 'firebase/database';
 const URL_Shortener = () => {
 
     const [url, setURL] = useState("");
+    const [shURL, setshURL] = useState('');
+    const [linkTHere, setlinkTHere] = useState(false);
 
     const handleClick = async () => {
 
@@ -41,6 +43,8 @@ const URL_Shortener = () => {
         };
 
         let shortURL = await hashAndEncodeBase62(url);
+        setshURL(shortURL);
+        setlinkTHere(true);
         putDataInFirebaseTest({name: shortURL, link: url, hits: 0});
         
     }
@@ -53,6 +57,7 @@ const URL_Shortener = () => {
                     <input className="URL_Shortener_input" placeholder="Enter link here" type="text" onChange={(e)=>{setURL(e.target.value)}}></input>
                     <button className="URL_Shortener_button" onClick={handleClick}>Shorten URL</button>
                 </div>
+                {linkTHere && <a className="ShortenedURL" href={"https://url-shortener-eosin-nu.vercel.app/"+shURL}>Click here</a>}
                 <p className="someTextInURL_Shortener">URL Shortener is a free tool to shorten URLs and generate short links <br/>URL shortener allows to create a shortened link making it easy to share</p>
             </div>
         </>
