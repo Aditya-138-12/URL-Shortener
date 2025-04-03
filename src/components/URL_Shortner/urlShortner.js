@@ -34,8 +34,8 @@ const URL_Shortener = () => {
 
         const putDataInFirebaseTest = async (data) => {
             const dbRef = ref(db, "shortURLs/");
-            //const newRef = push(dbRef);
-            await set(dbRef, data)
+            const newRef = push(dbRef);
+            await set(newRef, data)
                 .then(()=>{console.log("URL Added Sucessfully.")})
                 .catch((error)=>console.log("Error Adding URL: ", error))
         };
